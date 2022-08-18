@@ -16,7 +16,7 @@ opt-level = "z"
 pio = ["esp-idf-sys/pio"]
 
 [dependencies]
-esp-idf-sys = { version = "0.31", features = ["binstart"] }
+esp-idf-sys = { version = "0.31", features = ["binstart"], git = "https://github.com/esp-rs/esp-idf-sys", rev = "1358ea7145beb446b7e8309654eef185930c7c93" }
 
 [[package.metadata.esp-idf-sys.extra_components]]
 component_dirs = ["component"]
