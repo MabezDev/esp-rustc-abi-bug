@@ -37,6 +37,13 @@ extern "C" {
 
     fn ret_abi_test_4() -> Return4;
     fn ret_abi_test_5() -> Return5;
+
+    fn double_demo();
+
+    fn abi_test_double(d: f64) -> f64;
+    fn abi_test_float(f: f32)-> f32;
+
+    fn internal_clang_test();
 }
 
 fn main() {
@@ -52,5 +59,19 @@ fn main() {
 
         println!("ret_abi_test_4: {:?}", ret_abi_test_4());
         println!("ret_abi_test_5: {:?}", ret_abi_test_5());
+        println!("ret_abi_test_5: {:?}", ret_abi_test_5());
+
+        double_demo();
+
+        println!("{}", abi_test_double(3.14f64));
+        println!("{}", abi_test_float(3.14f32));
+
+        println!("{}", (abi_test_double(3.14f64) * 2.0) / 3.0);
+        println!("{}", (abi_test_float(3.14f32) * 2.0) / 3.0);
+
+        println!("{}", (3.14f64 * 2.0) / 3.0);
+        println!("{}", (3.14f32 * 2.0) / 3.0);
+
+        internal_clang_test();
     }
 }

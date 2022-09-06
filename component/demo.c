@@ -24,6 +24,15 @@ void abi_test_18(int p1, int p2, int p3, int p4, int p5, int p6, int p7, int p8,
     ESP_LOGI("abi_test_18", "p18.a=%d, p18.b=%d", p18.a, p18.b);
 }
 
+double abi_test_double(double x) {
+    ESP_LOGI("abi_test_double", "%f", x);
+    return x;
+}
+
+float abi_test_float(float x) {
+    ESP_LOGI("abi_test_float", "%f", x);
+    return x;
+}
 
 struct Return4 {
     int a, b, c, d;
@@ -61,4 +70,17 @@ struct Return5 ret_abi_test_5() {
 void ret_abi_test_internal_5() {
     struct Return5 r = ret_abi_test_5();
     ESP_LOGI("ret_abi_test_internal_5", "a=%d, b=%d, c=%d, d=%d, e=%d", r.a, r.b, r.c, r.d, r.e);
+}
+
+void double_demo() {
+    double x = 3.14;
+    double y = x * 2.0;
+    ESP_LOGI("double_demo_internal", "%f * 2.0 == %f", x, y);
+}
+
+void internal_clang_test() {
+    // unsigned __int128 t = 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF;
+    uint64_t t = 0xFFFFFFFFFFFFFFFF;
+
+    ESP_LOGI("internal_clang_test", "%lld", t);
 }
