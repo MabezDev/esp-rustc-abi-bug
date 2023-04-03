@@ -1,4 +1,4 @@
-use esp_idf_sys::c_types::c_int;
+use std::ffi::{c_int, c_short};
 
 #[repr(C)]
 struct Pair {
@@ -44,6 +44,8 @@ extern "C" {
     fn abi_test_float(f: f32)-> f32;
 
     fn internal_clang_test();
+
+    fn test_parameters_issue_171(p1: c_short, p2: c_short, p3: c_short, p4: c_short, p5: c_short, p6: c_short, p7: c_short, p8: c_short, p9: c_short, p10: c_short) -> c_short;
 }
 
 fn main() {
@@ -73,5 +75,16 @@ fn main() {
         println!("{}", (3.14f32 * 2.0) / 3.0);
 
         internal_clang_test();
+
+        println!("align_of c_short: {}", core::mem::align_of::<c_short>());
+        println!("size_of of c_short: {}", core::mem::size_of::<c_short>());
+        println!("Issue 171, result should be 800, it is {}", test_parameters_issue_171(100,200,300,400,500,600,700,800,900,1000));
     }
+}
+
+
+// not sure why this needed, binstart feature is passed?
+#[export_name = "app_main"]
+extern "C" fn dummy() {
+    main()
 }

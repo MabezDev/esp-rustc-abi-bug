@@ -6,21 +6,20 @@ edition = "2021"
 resolver = "2"
 
 [profile.release]
-# opt-level = "s"
+opt-level = "s"
 
 [profile.dev]
 debug = true    # Symbols are nice and they don't increase the size on Flash
 opt-level = "z"
 
 [features]
-pio = ["esp-idf-sys/pio"]
 
 [dependencies]
-esp-idf-sys = { version = "0.31", features = ["binstart"], git = "https://github.com/esp-rs/esp-idf-sys", rev = "1358ea7145beb446b7e8309654eef185930c7c93" }
+esp-idf-sys = { version = "0.32.1", default-features = false, features = ["binstart", "panic_handler", "alloc_handler", "native"] }
 
 [[package.metadata.esp-idf-sys.extra_components]]
 component_dirs = ["component"]
 
 [build-dependencies]
-embuild = "0.30"
+embuild = "0.31.1"
 anyhow = "1"
