@@ -1,4 +1,5 @@
 #include "esp_log.h"
+#include "stdalign.h"
 
 struct Pair {
     int a, b;
@@ -87,5 +88,7 @@ void internal_clang_test() {
 
 uint16_t test_parameters_issue_171(uint16_t param1, uint16_t param2, uint16_t param3, uint16_t param4, uint16_t param5, uint16_t param6, uint16_t param7, uint16_t param8, uint16_t param9, uint16_t param10)
 {
+    ESP_LOGI("test_parameters_issue_171", "alignof uint16_t %d", alignof(uint16_t));
+    ESP_LOGI("test_parameters_issue_171", "sizeof uint16_t %d", sizeof(uint16_t));
     return param8;
 }

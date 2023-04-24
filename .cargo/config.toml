@@ -13,6 +13,7 @@ linker = "ldproxy"
 
 [target.xtensa-esp32s3-espidf]
 rustflags = ["--cfg", "espidf_time64"]
+runner = "espflash flash --monitor"
 linker = "ldproxy"
 
 [target.riscv32imc-esp-espidf]
